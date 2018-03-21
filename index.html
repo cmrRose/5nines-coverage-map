@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Leaflet Demo</title>
+  
+  <!-- Load Leaflet from a CDN -->
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  
+  <!-- We need this for the address search and the grey basemap -->
+  <!-- Load Esri Leaflet from CDN -->
+<script src="https://unpkg.com/esri-leaflet@2.0.7"></script>
+  
+  <!-- Esri Leaflet Geocoder -->
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.8/dist/esri-leaflet-geocoder.css">
+    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.8"></script>
+  <style>
+    /* Make the map fill the entire page */
+    #map {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  
+  <script>
+      /* ~~~~~~~~ Map ~~~~~~~~ */
+    //create a map, center it, and set the zoom level
+    var map = L.map('map', {zoomControl:false}).setView([43.074642, -89.383982], 11);
+
+    /* ~~~~~~~~ Map Layers ~~~~~~~~ */
+    //background map layer options...
+
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+    // overlay layers 
+    var madisonimageUrl = 'http://cmrRose.github.io/images/coverage_knockoutLakes3.png';
+    var madisonimageBounds = [[43.01, -89.59628], [43.16298, -89.2237]];
+
+    var overlayMadison = L.imageOverlay(madisonimageUrl, madisonimageBounds, {opacity: 0.7}).addTo(map);
+
+    var overlays = {"Madison zones": overlayMadison};
+
+
+
+    /* ~~~~~~~~ Address Search ~~~~~~~~ */
+    // create the geocoding (address search) control and add it to the map
+    var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+
+    // create an empty layer group to store the results and add it to the map
+    var results = L.layerGroup().addTo(map);
+
+    // listen for the results event and add every result to the map
+    searchControl.on("results", function(data) {
+      results.clearLayers();
+      for (var i = data.results.length - 1; i >= 0; i--) {
+        results.addLayer(L.marker(data.results[i].latlng));
+      }
+    });
+
+
+    /* ~~~~~~~~ Other stuff ~~~~~~~~ */
+    //place a zoom control below the geocoding control: 
+    new L.Control.Zoom({position: 'topright'}).addTo(map);
+
+
+    /*~~~~~~ points ~~~~~~~*/
+  
+
+
+  </script>
+  
+</body>
+</html>
