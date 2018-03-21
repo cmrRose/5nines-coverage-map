@@ -10,12 +10,7 @@
   <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
   
   <!-- We need this for the address search -->
-  <!-- Load Esri Leaflet from CDN -->
-  <script src="https://unpkg.com/esri-leaflet@2.0.7"></script> 
-  
-  <!-- Esri Leaflet Geocoder -->
-    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.8/dist/esri-leaflet-geocoder.css">
-    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.8"></script>
+ 
   <style>
     
     /* 5Nines color: #ff8d09 */
@@ -54,18 +49,12 @@
     
     /* ~~~~~~~~ Address Search ~~~~~~~~ */
     // create the geocoding (address search) control and add it to the map
-    var searchControl = L.esri.Geocoding.geosearch({useMapBounds: 9, expanded: true, collapseAfterResult: false}).addTo(map);
+   
 
     // create an empty layer group to store the results and add it to the map
-    var results = L.layerGroup().addTo(map);
-
+    
     // listen for the results event and add every result to the map
-    searchControl.on("results", function(data) {
-      results.clearLayers();
-      for (var i = data.results.length - 1; i >= 0; i--) {
-        results.addLayer(L.marker(data.results[i].latlng));
-      }
-    });
+   
 
 
     /* ~~~~~~~~ Other stuff ~~~~~~~~ */
