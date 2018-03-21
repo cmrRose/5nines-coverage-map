@@ -76,7 +76,7 @@
     /*~~~~~~ points ~~~~~~~*/
   var basestationdata = {"type":"FeatureCollection","features":[{"type":"Feature","id":1,"geometry":{"type":"Point","coordinates":[-89.52914603599999,43.08934052200004,0]},"properties":{"OID":1,"Name":"8401 Greenway","Base":45}},{"type":"Feature","id":2,"geometry":{"type":"Point","coordinates":[-89.45597586899999,43.073928970000054,0]},"properties":{"OID":2,"Name":"625 N Segoe Road","Base":49.00000000000001}},{"type":"Feature","id":3,"geometry":{"type":"Point","coordinates":[-89.40711878199994,43.071750730000076,0]},"properties":{"OID":3,"Name":"1210 W Dayton","Base":33}},{"type":"Feature","id":4,"geometry":{"type":"Point","coordinates":[-89.38675133999999,43.073322905000055,0]},"properties":{"OID":4,"Name":"222 W Washington Ave","Base":47}},{"type":"Feature","id":5,"geometry":{"type":"Point","coordinates":[-89.37947035099995,43.074427316000026,0]},"properties":{"OID":5,"Name":"132 E Wilson","Base":43}},{"type":"Feature","id":6,"geometry":{"type":"Point","coordinates":[-89.29067990199997,43.13494490000005,0]},"properties":{"OID":6,"Name":"2910 Crossroads Drive","Base":18}}]}
 
-  var basestations = L.geoJSON(basestationdata, {})
+  var basestations = L.geoJSON(basestationdata, {style:{color:"green"}})
       .bindPopup(function (layer) {
           return ("<b>Base Station:</b><br>"+layer.feature.properties.Name);
       }).addTo(map);
