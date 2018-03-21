@@ -11,7 +11,7 @@
   
   <!-- We need this for the address search and the grey basemap -->
   <!-- Load Esri Leaflet from CDN -->
-<script src="https://unpkg.com/esri-leaflet@2.0.7"></script>
+<!--<script src="https://unpkg.com/esri-leaflet@2.0.7"></script> -->
   
   <!-- Esri Leaflet Geocoder -->
     <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.8/dist/esri-leaflet-geocoder.css">
@@ -36,7 +36,7 @@
     var map = L.map('map', {zoomControl:false}).setView([43.074642, -89.383982], 11);
 
     /* ~~~~~~~~ Map Layers ~~~~~~~~ */
-    //background map layer options...
+    //basemap from OSM
 
     var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
