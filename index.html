@@ -9,7 +9,10 @@
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
   
-  <!-- We need this for the address search -->
+  <!-- We need this for the address search and the grey basemap -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  
  
   <style>
     
@@ -49,21 +52,15 @@
     
     /* ~~~~~~~~ Address Search ~~~~~~~~ */
     // create the geocoding (address search) control and add it to the map
-   
+    L.Control.geocoder({collapsed: false, position: "topleft", showResultIcons: true}).addTo(map);
 
-    // create an empty layer group to store the results and add it to the map
-    
-    // listen for the results event and add every result to the map
-   
-
-
-    /* ~~~~~~~~ Other stuff ~~~~~~~~ */
+    /* ~~~~~~~~ Zoom Control ~~~~~~~~ */
     //place a zoom control below the geocoding control: 
     new L.Control.Zoom({position: 'topright'}).addTo(map);
 
 
     /*~~~~~~ points ~~~~~~~*/
-
+    //custom icon with the 5nines logo
     var myIcon = new L.Icon({
       iconUrl: '5nines-marker.png',
         iconSize: [34, 45],
@@ -74,6 +71,7 @@
         shadowAnchor: [14, 15]
     });
     
+    //base stations as geojson
   var basestationdata = {"type":"FeatureCollection","features":[{"type":"Feature","id":1,"geometry":{"type":"Point","coordinates":[-89.52914603599999,43.08934052200004,0]},"properties":{"OID":1,"Name":"8401 Greenway","Base":45}},{"type":"Feature","id":2,"geometry":{"type":"Point","coordinates":[-89.45597586899999,43.073928970000054,0]},"properties":{"OID":2,"Name":"625 N Segoe Road","Base":49.00000000000001}},{"type":"Feature","id":3,"geometry":{"type":"Point","coordinates":[-89.40711878199994,43.071750730000076,0]},"properties":{"OID":3,"Name":"1210 W Dayton","Base":33}},{"type":"Feature","id":4,"geometry":{"type":"Point","coordinates":[-89.38675133999999,43.073322905000055,0]},"properties":{"OID":4,"Name":"222 W Washington Ave","Base":47}},{"type":"Feature","id":5,"geometry":{"type":"Point","coordinates":[-89.37947035099995,43.074427316000026,0]},"properties":{"OID":5,"Name":"132 E Wilson","Base":43}},{"type":"Feature","id":6,"geometry":{"type":"Point","coordinates":[-89.29067990199997,43.13494490000005,0]},"properties":{"OID":6,"Name":"2910 Crossroads Drive","Base":18}}]}
 
   var basestations = L.geoJSON(basestationdata, {
