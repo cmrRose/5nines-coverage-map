@@ -26,6 +26,23 @@
             left: 0;
             right: 0;
         }
+    
+    .legend{
+      background-color: white;
+      border: 1px grey solid;
+      border-radius: 4px;
+      padding: 3px 5px;
+      line-height: 18px;
+
+    }
+
+    .legend i { /* legend swatches */
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+    }
+    
   </style>
 </head>
 <body>
@@ -82,6 +99,21 @@
       layer.bindPopup("<b>Base station: </b><br>"+feature.properties.Name)
     }  
   }).addTo(map);
+    
+    // Legend 
+
+    var legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+
+      var div = L.DomUtil.create('div', 'info legend');
+      div.innerHTML = '<b>5NINES Coverage</b><br> <i style="background: #99ff66"></i>probable coverage<br><i style="background: orange"></i>possible coverage';
+
+      return div;
+    };
+
+
+    legend.addTo(map);
 
   </script>
   
